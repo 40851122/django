@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bookpost{
+            position:  absolute;top:100px;left: 50%;transform: translate(-325px,0px);width: 650px;
+             padding:10px;
+            border: 1px solid #888888; background-color: #eeeeee;box-shadow: 0px 0px 10px #000000;
+            display: none;
+        }
+        .bookpost>.close{
+            position: absolute;Top: 3px;left: 3px;cursor:pointer;
+            border: 1px solid #888888; 
+            background-color: #eeeeee;box-shadow: 0px 0px 10px #000000;
+        }
+    </style>
+    <script>
+        var bookpost;
+        window.onload=function(){
+            bookpost=document.getElementsByClassName('bookpost');
+        };
+        function showbookpost(i){
+            bookpost[i].style.display ='block';            
+        };
+        function closebookpost(i){
+            bookpost[i].style.display ='none';
+        };
+    </script>
+</head>
+<body>
+    <!-- book_img ,TitleCache ,Author ,PublisherName,TotalPage ,UpdateDate ,Description ,ISBN -->
+    {% block content %}
+        {% for book_ID,value in book_ID_dic.items %}
+
+            <img name='{{book_ID}}' src={{value.book_img_url}} with="600" heigh="400" alt="一張圖片" onclick="showbookpost('{{ forloop.counter0 }}')">
+
+            <div id='bookpost' class='bookpost' name='{{book_ID}}'>
+
+                <div onclick='closebookpost("{{ forloop.counter0 }}")' class='close'>返回</div>
+                <p Align="center"><img  src={{value.book_img_url}} with="600" heigh="400" ></p>
+                <h2 align="center" style="line-height:1.5">標題</h2><br>
+                <h3 align="center" style="line-height:1.5">{{ value.TitleCache }}</h3><br>
+                <h2 align="center" style="line-height:1.5">簡介</h2><br>
+                <h3 align="center" style="line-height:1.5">{{ value.Description }}</h3><br>
+                <h3 align="center">作者：{{ value.Author }}</h3><br>
+                <h3 align="center">出版社：{{ value.PublisherName }}</h3><br>
+                <h3 align="center">總頁數：{{ value.TotalPage }}</h3><br>
+                <h3 align="center">上傳日期：{{ value.UpdateDate }}</h3><br>
+                <h3 align="center">書籍編號：{{ value.ISBN }}</h3><br>
+            </div>
+        {% endfor %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+        <div id='bookpost' class='bookpost' >
+            <div onclick='closebookpost()' class='close'>返回</div>
+            <img src={{value.book_img_url}} with="600" heigh="400" align="center">
+            <h3 align="center">標題：{{ value.TitleCache }}</h3><br>
+            <h4 align="center">作者：{{ value.Author }}</h4><br>
+            <h4 align="center">出版社：{{ value.PublisherName }}</h4><br>
+            <h4 align="center">總頁數：{{ value.TotalPage }}</h4><br>
+            <h4 align="center">上傳日期：{{ value.UpdateDate }}</h4><br>
+            <h4 align="center">簡介：{{ value.Description }}</h4><br>
+            <h4 align="center">書籍編號：{{ value.ISBN }}</h4><br>
+        </div>
+
+        <!-- <img src={{value.book_img_url}} with="600" heigh="400" alt="一張圖片">
+        <h3>標題：{{ value.TitleCache }}</h3><br>
+        <h4>作者：{{ value.Author }}</h4><br>
+        <h4>出版社：{{ value.PublisherName }}</h4><br>
+        <h4>總頁數：{{ value.TotalPage }}</h4><br>
+        <h4>上傳日期：{{ value.UpdateDate }}</h4><br>
+        <h4>簡介：{{ value.Description }}</h4><br>
+        <h4>書籍編號：{{ value.ISBN }}</h4><br> -->
+
+    {% endblock %}
+</body>
+</html>
