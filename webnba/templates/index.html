@@ -18,11 +18,13 @@
             display: none;
         }
         .bookpost {
-            position: absolute;
+            position: fixed;
+            overflow: scroll;
             top: 100px;
             left: 50%;
             transform: translate(-325px, 0px);
             width: 650px;
+            height: 600px;
             padding: 10px;
             border: 1px solid #888888;
             background-color: #eeeeee;
@@ -79,6 +81,12 @@
 
 <body>
     <div id="bg"></div>
+    <form name='searcg' action="" method="GET">
+        <label for='book_searcg'>你想搜尋幾本?</label>
+        <input id='book_searcg' type='number' min='1' max='50' name='book_searcg' value="5">
+        <input type="submit" value="搜尋">
+        <input type="reset" value="清除重填">
+    </form>
     {% block content %}
         {% for book_ID,value in book_ID_dic.items %}
             <a Align><img class='bookimgurl' name='{{book_ID}}' src={{value.book_img_url}}

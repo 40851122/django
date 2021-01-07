@@ -13,6 +13,7 @@ import time
 
 
 # Create your views here.
+
 def hot_book_img(book_ID_url):
     book_url = f'https://tclwebdata.s3.amazonaws.com/EBSRepos/EBSRepos/Images/cover450/{book_ID_url}.png'
     return book_url
@@ -31,8 +32,12 @@ def read_hotbook_total_url(url):
     books = json.loads(data)
     return books
 
-def hot_book(request,date_time=time.strftime(f'%Y/%m/%d', time.localtime()),book_number=10):
+def hot_book(request, date_time=time.strftime(f'%Y/%m/%d', time.localtime()), book_number=1):
     try:
+        try:
+            book_number = request.GET['book_searcg']
+        except:
+            pass
         if time.strptime(date_time, f"%Y/%m/%d"):
             hot_book_url = f'https://m.ebookservice.tw/api/3.00/kl;taipei;nt;ty;ml;ntc;cy;cyc;tn;ks;pt;ph;il;km;hc;hcc;ylc;ntl2;tt;tcl/TclPopularBook/?beginDate={date_time}&endDate={date_time}%2023:59:59&type=book&takeSize={book_number}'
             # hot_book_url = f'https://m.ebookservice.tw/api/3.00/kl;taipei;nt;ty;ml;ntc;cy;cyc;tn;ks;pt;ph;il;km;hc;hcc;ylc;ntl2;tt;tcl/TclPopularBook/?beginDate=2020/11/5&endDate=2020/11/5%2023:59:59&type=book&takeSize={book_number}'
