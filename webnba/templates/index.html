@@ -36,28 +36,33 @@
 
         .bookpost>.close {
             position: absolute;
-            Top: 5px;
+            top: 5px;
             left: 5px;
             cursor: pointer;
             border: 3px solid #888888;
             background-color: #36a2fb;
             box-shadow: 0px 0px 10px #000000;
             z-index: 3;
-        }
-
+        }   
         .bookimgurl {
             border: 5px solid #888888;
             /* border-width:3px; */
             border-style:dashed;
-            border-radius:5px;
+            border-radius:15px;
+            margin:5px 10px 15px 20px;
             border-color:#FFAC55;
             padding:10px;
             cursor: pointer;
+            background-color:cyan;
+            opacity: 80;
         }
         img{
             width: 350px;
             height: 400px;
             margin-right: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
         }
 
     </style>
@@ -77,6 +82,14 @@
             document.getElementById("bg").style.display= 'none';
         };
     </script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -89,12 +102,13 @@
     </form>
     {% block content %}
         {% for book_ID,value in book_ID_dic.items %}
-            <a Align><img class='bookimgurl' name='{{book_ID}}' src={{value.book_img_url}}
-                 onclick="showbookpost('{{ forloop.counter0 }}')"></a>
-
+            <a ><img class='bookimgurl' name='{{book_ID}}' src={{value.book_img_url}}
+            onclick="showbookpost('{{ forloop.counter0 }}')"></a>
             <div id='bookpost' class='bookpost' name='{{book_ID}}'>
                 <div onclick='closebookpost("{{ forloop.counter0 }}")' class='close' style="font-size: 34px;">返回</div>
-                <p Align="center"><img src={{value.book_img_url}} with="600" heigh="400"></p>
+                <p Align="center"  >
+                    <img  src={{value.book_img_url}} with="600" heigh="400" >
+                </p>
                 <h2 align="center" style="font-weight: bolder;">標題</h2><br>
                 <h3 align="center" style="line-height:1.5">{{    value.TitleCache }}</h3><br>
                 <h2 align="center" style="font-weight: bolder;">簡介</h2><br>
