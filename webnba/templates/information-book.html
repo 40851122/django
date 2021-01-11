@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>資訊類書籍</title>
     <style>
         #bg{
             width:2000000%;
@@ -64,7 +64,9 @@
             -moz-border-radius: 10px;
             border-radius: 10px;
         }
+        {
 
+        }
     </style>
     <script>
         var bookpost, bg;
@@ -82,24 +84,27 @@
             document.getElementById("bg").style.display= 'none';
         };
     </script>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="bg"></div>
-    <form name='searcg' action="" method="GET">
-        <label for='book_searcg'>你想搜尋幾本?</label>
-        <input id='book_searcg' type='number' min='1' max='50' name='book_searcg' value="5">
-        <input type="submit" value="搜尋">
-        <input type="reset" value="清除重填">
-    </form>
+    <div Align='center' >
+        <form style="margin:0px;display:inline;" name="back-page" action="" method="GET"> 
+            <input style="display: none;" id='back-up' type='number' name='back-up' value="1">
+            <input style="display: none;" id='bool-back' type='text' name='bool-back' value='True'>
+            <input style="display: none;" id='back_number' type='number' name='back_number' value={{ pageno }}>
+            <input style="display: none;" id='page_total' type='number' name='page_total' value={{ page_total }}>
+            <input type="submit" value="上一頁"></input>
+        </form>
+        總共{{ page_total }}頁，現在第{{ pageno }}頁
+        <form style="margin:0px;display:inline;" name="next-page" action="" method="GET"> 
+            <input style="display: none;" id='next' type='number' name='next' value="1">
+            <input style="display: none;" id='bool' type='text' name='bool' value='True'>
+            <input style="display: none;" id='page_total' type='number' name='page_total' value={{ page_total }}>
+            <input style="display: none;" id='next_number' type='number' name='next_number' value={{ pageno }}>
+            <input type="submit" value="下一頁"></input>
+        </form>
+    </div>
     {% block content %}
         {% for book_ID,value in book_ID_dic.items %}
             <a ><img class='bookimgurl' name='{{book_ID}}' src={{value.book_img_url}}
